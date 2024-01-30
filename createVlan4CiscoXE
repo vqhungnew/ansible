@@ -1,0 +1,23 @@
+---
+- name: Tao VLAN trên Cisco XE (SANDBOX LAB)
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Create vlan
+      ios_vlan:
+        vlan_id: "{{ item.number }}"
+        name: "{{ item.name }}"
+        state: present
+      with_items:
+        - { number: 111, name: "vaa_t7_g111" }
+        - { number: 112, name: "vaa_t7_g112" }
+        - { number: 113, name: "vaa_t7_g113" }
+
+    - name: Show vlan
+      ios_command:
+        commands:
+          - show vlan brief
+      register: show_vlan
+
+    - debug: var=show_vlan.stdout_lines
