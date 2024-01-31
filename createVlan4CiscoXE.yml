@@ -1,23 +1,29 @@
 ---
-- name: Tao VLAN trên Cisco XE (SANDBOX LAB)
-  hosts: all
-  gather_facts: no
-
+- name: dat ip cho loobpack
+  hosts: all # tên của thiết bị trong Ansible server( vì ở đây chỉ có router nên có thể để all)
+# các tác vụ
   tasks:
-    - name: Create vlan
-      ios_vlan:
-        vlan_id: "{{ item.number }}"
-        name: "{{ item.name }}"
-        state: present
+    - name: Set loopback IPv4 address # Đặt tên task để quản lý
+      ios_l3_interface: # do cấu hình router nên bắt buộc khai báo như vậy
+        name: loopback {{ item.name }} # tên cổng
+        ipv4: 10.100.{{ item.number }}.1/24 # địa chỉ IP của loopback
       with_items:
-        - { number: 111, name: "vaa_t7_g111" }
-        - { number: 112, name: "vaa_t7_g112" }
-        - { number: 113, name: "vaa_t7_g113" }
-
-    - name: Show vlan
-      ios_command:
+	- { name: "0", number: 0}
+	- { name: "1", number: 1}
+	- { name: "2", number: 2}
+    - name: Set Ethernet0/1 IPv4 address
+      ios_l3_interface:
+        name: Ethernet0/2
+        ipv4: 192.168.112.2/24
+    - name: no shut
+      ios_interface:
+        name: Ethernet0/2
+        state: present
+    #Xem lại tất cả các cổng
+    - name: Show ip
+      ios_command: # Viết lệnh để gửi ở mode command line của router
         commands:
-          - show vlan brief
-      register: show_vlan
+          - show ip int brief
+      register: show_ip # gắn kết quả vào biến show_ip
 
-    - debug: var=show_vlan.stdout_lines
+    - debug: var=show_ip.stdout_lines # debug: in ra màn hình, đặt biến var(lấy thông tin của các dòng từ show_ip gắn vào),in biến var
