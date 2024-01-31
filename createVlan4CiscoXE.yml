@@ -8,9 +8,9 @@
         name: loopback {{ item.name }} # tên cổng
         ipv4: 10.100.{{ item.number }}.1/24 # địa chỉ IP của loopback
       with_items:
-	- { name: "0", number: 0}
-	- { name: "1", number: 1}
-	- { name: "2", number: 2}
+        - { name: "0", number: 0}
+        - { name: "1", number: 1}
+        - { name: "2", number: 2}
     - name: Set Ethernet0/1 IPv4 address
       ios_l3_interface:
         name: Ethernet0/2
