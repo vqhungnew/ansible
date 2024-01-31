@@ -1,5 +1,6 @@
 ---
-- name: dat ip cho loobpack
+# Tham khảo về file Playbook của Ansible https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html
+- name: Tạo các Loobpack Interface
   hosts: all # tên của thiết bị trong Ansible server( vì ở đây chỉ có router nên có thể để all)
 # các tác vụ
   tasks:
