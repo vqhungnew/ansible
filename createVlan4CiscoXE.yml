@@ -7,7 +7,7 @@
 # Các tác vụ
   tasks:
     - name: Create and Set loopback IPv4 address # Đặt tên task để quản lý
-      ios_l3_interface: # do cấu hình router nên bắt buộc khai báo như vậy
+      ios_l3_interface: # https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_l3_interfaces_module.html
         name: loopback {{ item.name }} # tên Loopback Interface
         ipv4: 10.100.{{ item.number }}.1/24 # địa chỉ IP của Loopback Interface
       with_items:
