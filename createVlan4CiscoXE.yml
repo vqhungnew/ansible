@@ -1,6 +1,7 @@
 ---
 # Tham khảo về file Playbook của Ansible https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html
 # Các Keyword trong Playbook https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html#playbook-keywords
+# Tham khảo riêng các tham số về Network Cisco https://www.packetswitch.co.uk/ansible-with-cisco/
 - name: Tạo các Loobpack Interface
   hosts: all # Tên của thiết bị trong Ansible server
 # Các tác vụ
