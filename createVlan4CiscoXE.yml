@@ -2,8 +2,8 @@
 # Tham khảo về file Playbook của Ansible https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html
 # Các Keyword trong Playbook https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html#playbook-keywords
 - name: Tạo các Loobpack Interface
-  hosts: all # tên của thiết bị trong Ansible server( vì ở đây chỉ có router nên có thể để all)
-# các tác vụ
+  hosts: all # Tên của thiết bị trong Ansible server
+# Các tác vụ
   tasks:
     - name: Set loopback IPv4 address # Đặt tên task để quản lý
       ios_l3_interface: # do cấu hình router nên bắt buộc khai báo như vậy
