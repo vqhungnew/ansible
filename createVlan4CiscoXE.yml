@@ -6,19 +6,19 @@
   hosts: all # Tên của thiết bị trong Ansible server
 # Các tác vụ
   tasks:
-    - name: Set loopback IPv4 address # Đặt tên task để quản lý
+    - name: Create and Set loopback IPv4 address # Đặt tên task để quản lý
       ios_l3_interface: # do cấu hình router nên bắt buộc khai báo như vậy
-        name: loopback {{ item.name }} # tên cổng
-        ipv4: 10.100.{{ item.number }}.1/24 # địa chỉ IP của loopback
+        name: loopback {{ item.name }} # tên Loopback Interface
+        ipv4: 10.100.{{ item.number }}.1/24 # địa chỉ IP của Loopback Interface
       with_items:
         - { name: "0", number: 0}
         - { name: "1", number: 1}
         - { name: "2", number: 2}
     #Xem lại tất cả các cổng
-    - name: Show ip
+    - name: Show ip of all
       ios_command: # Viết lệnh để gửi ở mode command line của router
         commands:
-          - show ip int brief
+          - show ip int brief # This command to SHOW ALL Interface briefly
       register: show_ip # gắn kết quả vào biến show_ip
 
     - debug: var=show_ip.stdout_lines # debug: in ra màn hình, đặt biến var(lấy thông tin của các dòng từ show_ip gắn vào),in biến var
