@@ -11,14 +11,6 @@
         - { name: "0", number: 0}
         - { name: "1", number: 1}
         - { name: "2", number: 2}
-    - name: Set Ethernet0/1 IPv4 address
-      ios_l3_interface:
-        name: Ethernet0/2
-        ipv4: 192.168.112.2/24
-    - name: no shut
-      ios_interface:
-        name: Ethernet0/2
-        state: present
     #Xem lại tất cả các cổng
     - name: Show ip
       ios_command: # Viết lệnh để gửi ở mode command line của router
