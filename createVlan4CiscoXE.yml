@@ -11,9 +11,9 @@
         name: loopback {{ item.name }} # tên Loopback Interface
         ipv4: 10.100.{{ item.number }}.1/24 # địa chỉ IP của Loopback Interface
       with_items:
-        - { name: "0", number: 311}
-        - { name: "1", number: 312}
-        - { name: "2", number: 313}
+        - { name: "0", number: 31}
+        - { name: "1", number: 32}
+        - { name: "2", number: 33}
     #Xem lại tất cả các cổng
     - name: Show ip of all
       ios_command: # Viết lệnh để gửi ở mode command line của router
