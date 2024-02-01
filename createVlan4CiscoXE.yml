@@ -18,7 +18,7 @@
     - name: Show ip of all
       ios_command: # Viết lệnh để gửi ở mode command line của router
         commands:
-          - show ip int brief # This command to SHOW ALL Interface briefly
+          - sh ip int bri     #show ip int brief # This command to SHOW ALL Interface briefly
       register: show_ip # gắn kết quả vào biến show_ip
 
     - debug: var=show_ip.stdout_lines # debug: in ra màn hình, đặt biến var(lấy thông tin của các dòng từ show_ip gắn vào),in biến var
