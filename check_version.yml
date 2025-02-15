@@ -1,0 +1,12 @@
+---
+- name: Show version
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Show version
+      ios_command:
+        commands: show version
+      register: result
+    - fail: msg="can update version"
+      when: "not ('Version 12.4' in result.stdout[0])"
