@@ -1,0 +1,23 @@
+---
+- name: Deploy Docker container
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure Docker is installed
+      ansible.builtin.package:
+        name: docker
+        state: present
+
+    - name: Pull Docker image
+      community.docker.docker_image:
+        name: "nginx"
+        source: pull
+
+    - name: Run Docker container
+      community.docker.docker_container:
+        name: nginx-container
+        image: nginx
+        state: started
+        ports:
+          - "80:80"
+        restart_policy: always
